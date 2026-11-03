@@ -1,5 +1,5 @@
 
-# 📚 TP7 Integrador - Gestión de Biblioteca
+# 📚 TP7 Integrador POO - Gestión de Biblioteca
 
 ## 📌 Descripción del proyecto
 
