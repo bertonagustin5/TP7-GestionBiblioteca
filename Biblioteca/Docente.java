@@ -41,7 +41,7 @@ public class Docente extends Socio{
         this.setDiasPrestamo(this.getDiasPrestamo() + p_dias);
     }
     
-    //@Override? no especificado
+    //@No esta especificado en las consignas si deberia ir un Override en este como si lo esta en Estudiante, asi que se queda asi por el momento 
     public boolean puedePedir(){
         return super.puedePedir();        
     }
