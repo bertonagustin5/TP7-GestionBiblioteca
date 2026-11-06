@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.Calendar;
 import java.util.HashSet;
 
 public class Biblioteca {
@@ -88,3 +90,61 @@ public class Biblioteca {
         return lista;
     }
 }
+
+public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro){
+        for(Libro l : libros){
+            if(l == p_libro){
+                for(Socio s : socios){
+                    if(s == p_socio){
+                        Prestamo prestamo = new Prestamo(p_fechaRetiro, p_socio, p_libro);
+                        s.agregarPrestamo(prestamo);
+                        l.agregarPrestamo(prestramo);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    public void devolverLibro(Libro p_libro) throws LibroNoPrestadoException{
+        Calendar fechaHoy = new GregorianCalendar();
+        if(!(p_libro.prestado())){
+            throw new LibroNoPrestadoException(p_libro);
+        }
+        p_libro.ultimoPrestamo().registrarFechaDevolucion(fechaHoy);
+    }
+    
+    public ArrayList prestamosVencidos(){
+        Calendar fechaHoy = new GregorianCalendar();
+        ArrayList prestamosVencidos;
+        for(Socio s : socios){
+            for(Prestamo p : s.getPrestamos()){
+                if(p.vencido(fechaHoy)){
+                    prestamosVencidos.add(p);
+                }
+            }
+        }
+        return prestamosVencidos;
+    }
+    
+    public ArrayList docentesResponsables(){
+        ArrayList docentesResponsables;
+        for(Socio d : socios){
+            if((d.soyDeLaClase() == "Docente") && (d.esResponsable())){
+                docentesResponsables.add(d);
+            }
+        }
+        return docentesResponsables; 
+    }
+    
+    public String quienTieneElLibro(Libro p_libro) throws LibroNoPrestadoException{
+        for(Socio s : socios){
+            for(Prestamo p : s.getPrestamos()){
+                if(p.getLibro() == p_libro){
+                    return s.getNombre();
+                }
+            }
+        }
+        throw new LibroNoPrestadoException(p_libro);
+    }
