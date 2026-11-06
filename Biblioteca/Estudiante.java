@@ -1,3 +1,4 @@
+package biblioteca;
 public class Estudiante extends Socio{
     public static final int DIAS_PRESTAMO = 20;
     private String carrera; 
