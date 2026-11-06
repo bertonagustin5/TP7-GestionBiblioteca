@@ -89,7 +89,6 @@ public class Biblioteca {
         }
         return lista;
     }
-}
 
 public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro){
         for(Libro l : libros){
@@ -148,3 +147,4 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         }
         throw new LibroNoPrestadoException(p_libro);
     }
+}
