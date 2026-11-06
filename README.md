@@ -27,6 +27,15 @@ El proyecto consiste en implementar un sistema de gestión de biblioteca que per
 
 Integrar los conocimientos adquiridos durante la asignatura mediante el desarrollo colaborativo de una aplicación orientada a objetos, respetando el diseño UML proporcionado por la cátedra.
 
+## 👥 Distribucion de clases
+| Subgrupo | Integrante/s | Clases |
+|---|---|---|
+| 1 | Berton Agustin | Prestamo, Socio |
+| 2 | Gonzalez Avril Araceli | Estudiante, Docente |
+| 3 | Balenzuela Tobias | Libro |
+| 4 | Acevedo Horacio, Fernandez Zalazar Jeremias, Rodriguez Martemucci Lucciana | Biblioteca |
+| Todos | Los 6 | GestionBiblioteca |
+
 ## 📂 Estructura del proyecto
 
 ```text
