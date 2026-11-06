@@ -30,7 +30,7 @@ public abstract class Socio
         this.nombre = p_nombre;
     }
     
-    private void setDiasPrestamo(int p_diasPrestamo){
+    protected void setDiasPrestamo(int p_diasPrestamo){
         this.diasPrestamo = p_diasPrestamo;
     }
     
