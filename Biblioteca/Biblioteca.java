@@ -97,7 +97,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
                     if(s == p_socio){
                         Prestamo prestamo = new Prestamo(p_fechaRetiro, p_socio, p_libro);
                         s.agregarPrestamo(prestamo);
-                        l.agregarPrestamo(prestramo);
+                        l.agregarPrestamo(prestamo);
                         return true;
                     }
                 }
@@ -130,7 +130,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
     public ArrayList<Socio> docentesResponsables(){
         ArrayList<Socio> docentesResponsables = new ArrayList<Socio>();
         for(Socio d : socios){
-            if((d.soyDeLaClase() == "Docente") && (d.esResponsable())){
+            if((d.soyDeLaClase().equals("Docente") && ((Docente)d).esResponsable()){
                 docentesResponsables.add(d);
             }
         }
@@ -156,13 +156,13 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
 
 /***************** nuevoSocioEstudiante() *************************************************/
 public void nuevoSocioEstudiante(int p_dniSocio, String p_nombre, String p_carrera) {
-    Estudiante nuevoEstudiante = new Estudiante(p_dniSocio, p_nombre, p_carrera);
+    Estudiante nuevoEstudiante = new Estudiante(p_dniSocio, p_nombre, 5, p_carrera);
     this.getSocios().add(nuevoEstudiante);
 }
 
 /***************** nuevoSocioDocente() ****************************************************/
 public void nuevoSocioDocente(int p_dniSocio, String p_nombre, String p_area) {
-    Docente nuevoDocente = new Docente(p_dniSocio, p_nombre, p_area);
+    Docente nuevoDocente = new Docente(p_dniSocio, p_nombre, 10, p_area);
     this.getSocios().add(nuevoDocente);
 }
 /****************** listaDeSocios() Formato 1*******************************************************/
@@ -170,7 +170,7 @@ public String listaDeSocios() {
     String lista = "Lista de Socios: \n\n";
     int contador = 1;
     for (Socio socio : this.getSocios()) {
-        lista += contador + ") " + getSocios().toString() + "\n";
+        lista += contador + ") " + socio.toString() + "\n";
         contador++;
     }
     lista += "**************************************\n";
