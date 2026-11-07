@@ -66,7 +66,7 @@ public class Menu
              
     }
 }
-/**** COMO USAR MENU -----EJEMPLO ***********/
+/**** COMO USAR MENU -----EJEMPLO ***********
 ArrayList<String> ops = new ArrayList<>();
         ops.add("<-Ejercicio(1)-NO");
         ops.add("<-Ejercicio(2)-NO");
@@ -112,3 +112,4 @@ ArrayList<String> ops = new ArrayList<>();
                      break;
         }
     } while(opcion!=0);
+**/
