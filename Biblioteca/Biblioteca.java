@@ -130,7 +130,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
     public ArrayList<Socio> docentesResponsables(){
         ArrayList<Socio> docentesResponsables = new ArrayList<Socio>();
         for(Socio d : socios){
-            if((d.soyDeLaClase().equals("Docente") && ((Docente)d).esResponsable()){
+            if((d.soyDeLaClase().equals("Docente") && ((Docente)d).esResponsable())){
                 docentesResponsables.add(d);
             }
         }
