@@ -55,10 +55,27 @@ public abstract class Socio
     }
     
     public boolean agregarPrestamo(Prestamo p_prestamo) {
+       if (p_prestamo == null || p_prestamo.getSocio() != this ||
+        p_prestamo.getLibro() == null ||
+        p_prestamo.getFechaDevolucion() != null) {
+        return false;
+        }
+    
+        for (Prestamo unPrestamo : this.getPrestamos()) {
+            if (unPrestamo.getLibro() == p_prestamo.getLibro()) {
+                return false;
+            }
+        }
+        
         return this.getPrestamos().add(p_prestamo);
     }
     
     public boolean quitarPrestamo(Prestamo p_prestamo) {
+        if (p_prestamo == null || p_prestamo.getSocio() != this ||
+            p_prestamo.getFechaDevolucion() == null) {
+            return false;
+        }
+
         return this.getPrestamos().remove(p_prestamo);
     }
     
