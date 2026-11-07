@@ -114,9 +114,9 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         p_libro.ultimoPrestamo().registrarFechaDevolucion(fechaHoy);
     }
     
-    public ArrayList prestamosVencidos(){
+    public ArrayList<Prestamo> prestamosVencidos(){
         Calendar fechaHoy = new GregorianCalendar();
-        ArrayList prestamosVencidos;
+        ArrayList<Prestamo> prestamosVencidos = new ArrayList<Prestamo>;
         for(Socio s : socios){
             for(Prestamo p : s.getPrestamos()){
                 if(p.vencido(fechaHoy)){
@@ -127,8 +127,8 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         return prestamosVencidos;
     }
     
-    public ArrayList docentesResponsables(){
-        ArrayList docentesResponsables;
+    public ArrayList<Socio> docentesResponsables(){
+        ArrayList<Socio> docentesResponsables = new ArrayList<Socio>;
         for(Socio d : socios){
             if((d.soyDeLaClase() == "Docente") && (d.esResponsable())){
                 docentesResponsables.add(d);
