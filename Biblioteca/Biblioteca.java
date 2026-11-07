@@ -116,7 +116,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
     
     public ArrayList<Prestamo> prestamosVencidos(){
         Calendar fechaHoy = new GregorianCalendar();
-        ArrayList<Prestamo> prestamosVencidos = new ArrayList<Prestamo>;
+        ArrayList<Prestamo> prestamosVencidos = new ArrayList<Prestamo>();
         for(Socio s : socios){
             for(Prestamo p : s.getPrestamos()){
                 if(p.vencido(fechaHoy)){
@@ -128,7 +128,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
     }
     
     public ArrayList<Socio> docentesResponsables(){
-        ArrayList<Socio> docentesResponsables = new ArrayList<Socio>;
+        ArrayList<Socio> docentesResponsables = new ArrayList<Socio>();
         for(Socio d : socios){
             if((d.soyDeLaClase() == "Docente") && (d.esResponsable())){
                 docentesResponsables.add(d);
