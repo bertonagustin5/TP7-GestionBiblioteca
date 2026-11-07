@@ -147,4 +147,46 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         }
         throw new LibroNoPrestadoException(p_libro);
     }
+     /********* nuevoLibro() *******************************************************************/   
+   public void nuevoLibro(String p_titulo, int p_edicion, String p_editorial, int p_anio) {
+       
+    Libro nuevoLibro = new Libro(p_titulo, p_edicion, p_editorial, p_anio);
+    this.getLibros().add(nuevoLibro);
+}
+
+/***************** nuevoSocioEstudiante() *************************************************/
+public void nuevoSocioEstudiante(int p_dniSocio, String p_nombre, String p_carrera) {
+    Estudiante nuevoEstudiante = new Estudiante(p_dniSocio, p_nombre, p_carrera);
+    this.getSocios().add(nuevoEstudiante);
+}
+
+/***************** nuevoSocioDocente() ****************************************************/
+public void nuevoSocioDocente(int p_dniSocio, String p_nombre, String p_area) {
+    Docente nuevoDocente = new Docente(p_dniSocio, p_nombre, p_area);
+    this.getSocios().add(nuevoDocente);
+}
+/****************** listaDeSocios() Formato 1*******************************************************/
+public String listaDeSocios() {
+    String lista = "Lista de Socios: \n\n";
+    int contador = 1;
+    for (Socio socio : this.getSocios()) {
+        lista += contador + ") " + getSocios().toString() + "\n";
+        contador++;
+    }
+    lista += "**************************************\n";
+    lista += " Cantidad de Socios del tipo Estudiante: " + this.cantidadDeSociosPorTipo("Estudiante") + "\n";
+    lista += " Cantidad de Socios del tipo Docente: " + this.cantidadDeSociosPorTipo("Docente") + "\n";
+    lista += "**************************************\n";
+    return lista;
+}
+/****************** cantidadSociosPorTipo() ***********************************************/
+public int cantidadDeSociosPorTipo(String p_tipo) {
+    int cantidad = 0;
+    for (Socio socio : this.getSocios()) {
+        if (socio.soyDeLaClase().equals(p_tipo)) {
+            cantidad++;
+        }
+    }
+    return cantidad;
+}
 }
