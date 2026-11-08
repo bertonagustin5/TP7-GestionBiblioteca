@@ -28,20 +28,15 @@ public class GestionBiblioteca {
             switch (opcion) {
                 case 1:
                     System.out.println("\n--- CARGANDO DATOS INICIALES ---");
-                    // --- TAREA INTEGRANTE 1 ---
-                     mostrarSubMenu_1();
-                    // Usar metodos nuevoLibro(), nuevoSocioEstudiante() y nuevoSocioDocente().
-                    // Asegurarse de cargar el libro "Programando con JAVA".
+
+                    mostrarSubMenu_1();
                     
                     System.out.println("Datos cargados exitosamente.");
                     break;
 
                 case 2:
                     System.out.println("\n--- SIMULACIÓN DE MOVIMIENTOS ---");
-                    // --- TAREA INTEGRANTE 2 ---
-                    // Buscar un socio, buscar un libro y usar el método prestarLibro() o devolverLibro().
-                    // Usar Calendar para las fechas de retiro.
-                    
+                    simularMovimientos(teclado);
                     break;
 
                 case 3:
@@ -312,4 +307,89 @@ public static void cargarDatosPrueba(){
     biblioteca.nuevoSocioDocente(docente2.getDniSocio(),docente2.getNombre(),docente2.getArea());
 }   
 
+public static void simularMovimientos(Scanner teclado) {
+        int opcionMov = -1;
+        do {
+            System.out.println("\n--- SUB-MENÚ MOVIMIENTOS ---");
+            System.out.println("1. Registrar Préstamo");
+            System.out.println("2. Registrar Devolución");
+            System.out.println("0. Volver al menú principal");
+            System.out.print("Elija una opción: ");
+            
+            while (!teclado.hasNextInt()) {
+                System.out.println("Debe ingresar un número.");
+                teclado.next();
+                System.out.print("Elija una opción: ");
+            }
+            opcionMov = teclado.nextInt();
+            teclado.nextLine(); 
+
+            switch (opcionMov) {
+                case 1:
+                    registrarPrestamoUI(teclado);
+                    break;
+                case 2:
+                    registrarDevolucionUI(teclado);
+                    break;
+                case 0:
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+                    break;
+            }
+        } while (opcionMov != 0);
+    }
+
+    public static void registrarPrestamoUI(Scanner teclado) {
+        System.out.print("Ingrese el DNI del socio: ");
+        int dni = teclado.nextInt();
+        teclado.nextLine(); 
+
+        Socio socio = biblioteca.buscarSocio(dni);
+        if (socio == null) {
+            System.out.println("Error: No existe un socio con ese DNI.");
+            return;
+        }
+
+        System.out.print("Ingrese el título del libro a prestar: ");
+        String titulo = teclado.nextLine();
+        Libro libro = biblioteca.buscarLibro(titulo);
+
+        if (libro == null) {
+            System.out.println("Error: El libro no existe en la biblioteca.");
+            return;
+        }
+
+        // Instancia de fecha requerida para el registro del préstamo
+        Calendar fechaRetiro = new GregorianCalendar();
+
+        boolean exito = biblioteca.prestarLibro(fechaRetiro, socio, libro);
+        
+        if (exito) {
+            System.out.println("Préstamo registrado exitosamente para: " + socio.getNombre());
+        } else {
+            System.out.println("Préstamo rechazado. (El libro ya está prestado, el socio adeuda libros o superó su límite)");
+        }
+    }
+
+    public static void registrarDevolucionUI(Scanner teclado) {
+        System.out.print("Ingrese el título del libro a devolver: ");
+        String titulo = teclado.nextLine();
+        Libro libro = biblioteca.buscarLibro(titulo);
+
+        if (libro == null) {
+            System.out.println("Error: El libro no existe en la biblioteca.");
+            return;
+        }
+
+        // Bloque obligatorio para capturar el error si el libro ya estaba en la biblioteca
+        try {
+            biblioteca.devolverLibro(libro);
+            System.out.println("Devolución registrada exitosamente. El libro vuelve a estar disponible.");
+        } catch (LibroNoPrestadoException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
 }
