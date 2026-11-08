@@ -10,6 +10,8 @@ package biblioteca;
  */
 
 public class Estudiante extends Socio{
+
+    public static final int DIAS_PRESTAMO = 20;
     
   /** Carrera que cursa el estudiante. */
     private String carrera; 
