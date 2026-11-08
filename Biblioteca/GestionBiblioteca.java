@@ -55,11 +55,10 @@ public class GestionBiblioteca {
 
                 case 4:
                     System.out.println("\n--- CONSULTAS ESPECÍFICAS ---");
-                    // --- TAREA INTEGRANTE 4 ---
-                    // Imprimir las respuestas a: "¿Qué cantidad de socios de tipo Estudiante hay?"
-                    // y "¿Cuál es la lista de docentes que nunca han adeudado ni adeudan libros?"
-                    // Llamar a cantidadDeSociosPorTipo("Estudiante") y listaDeDocentesResponsables().
-                    
+                    //metodo para imprimir en pantalla el numero total de socios del tipo Estudiante
+                    System.out.println("\nEl numero de socios que son estudiantes registrados en la biblioteca son: "+biblioteca.cantidadDeSociosPorTipo("Estudiante"));
+                    //metodo para mostrar en pantalla la lista de docentes responsables
+                    System.out.println("\n\nY estos son los docentes responsables:\n"+biblioteca.docentesResponsables());
                     break;
 
                 case 5:
