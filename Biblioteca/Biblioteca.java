@@ -161,7 +161,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
     public void devolverLibro(Libro p_libro) throws LibroNoPrestadoException{
         Calendar fechaHoy = new GregorianCalendar();
         if(!(p_libro.prestado())){
-            throw new LibroNoPrestadoException(p_libro);
+            throw new LibroNoPrestadoException("El libro " + p_libro.getTitulo() + " no se puede devolver ya que se encuentra en la biblioteca");
         }
         p_libro.ultimoPrestamo().registrarFechaDevolucion(fechaHoy);
     }
@@ -190,6 +190,9 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
     }
     
     public String quienTieneElLibro(Libro p_libro) throws LibroNoPrestadoException{
+        if (!p_libro.prestado()) {
+            throw new LibroNoPrestadoException("El libro se encuentra en la biblioteca");
+        }
         for(Socio s : socios){
             for(Prestamo p : s.getPrestamos()){
                 if(p.getLibro() == p_libro && p.getFechaDevolucion() == null){
@@ -197,7 +200,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
                 }
             }
         }
-        throw new LibroNoPrestadoException(p_libro);
+        throw new LibroNoPrestadoException("El libro se encuentra en la biblioteca");
     }
      /********* nuevoLibro() *******************************************************************/   
    public void nuevoLibro(String p_titulo, int p_edicion, String p_editorial, int p_anio) {
