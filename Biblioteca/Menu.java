@@ -1,3 +1,4 @@
+package biblioteca;
 **
  * Write a description of class Menu here.
  * 
@@ -66,50 +67,3 @@ public class Menu
              
     }
 }
-/**** COMO USAR MENU -----EJEMPLO ***********
-ArrayList<String> ops = new ArrayList<>();
-        ops.add("<-Ejercicio(1)-NO");
-        ops.add("<-Ejercicio(2)-NO");
-        ops.add("<-Ejercicio(3)-NO");
-        ops.add("<-Ejercicio(4)-NO");
-        ops.add("<-Ejercicio(5)");
-        ops.add("<-Ejercicio(6)-NO");
-        ops.add("<-Ejercicio(7)");
-        ops.add("<-Ejercicio(8)");
-        ops.add("<-Ejercicio(9)");
-        ops.add("<-Ejercicio(10)");
-        ops.add("<-Ejercicio(11)");
-        
-        // Si mañana agregás otra opción, no tocás la clase Menu
-        // ops.add("Vender libro");
-        
-        Menu menu = new Menu("TRABAJO PRACTICO Nro 5", ops);
-        int opcion;
-        do {
-        opcion = menu.elegir();
-        menu.limpiarPantalla();
-        System.out.println("Elegiste: " + opcion);
-        
-        switch (opcion) {
-            case 1 : break;
-            case 2 : break;
-            case 3 : break;
-            case 4 : break;
-            case 5 : AplicacionFacultad.main(args);
-                     break;
-            case 6 : break;
-            case 7 : Administracion.main(args);
-                     break;
-            case 8 : Comercio.main(args);
-                     break;
-            case 9 : AdministracionGerencia.main(args);
-                     break;
-            case 10: AdministracionZoo.main(args);
-                     break;
-            case 11: AplicacionPedido.main(args);
-                     break;
-            default: System.out.println("SALISTE");
-                     break;
-        }
-    } while(opcion!=0);
-**/
