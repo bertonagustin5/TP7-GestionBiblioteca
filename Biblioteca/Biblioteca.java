@@ -123,7 +123,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         ArrayList<Prestamo> prestamosVencidos = new ArrayList<Prestamo>();
         for(Socio s : socios){
             for(Prestamo p : s.getPrestamos()){
-                if(p.getFechaDevolucion() == null & p.vencido(fechaHoy)){
+                if(p.getFechaDevolucion() == null && p.vencido(fechaHoy)){
                     prestamosVencidos.add(p);
                 }
             }
