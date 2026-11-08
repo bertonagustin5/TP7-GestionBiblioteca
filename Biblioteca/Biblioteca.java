@@ -3,17 +3,38 @@ import java.util.GregorianCalendar;
 import java.util.Calendar;
 import java.util.HashSet;
 
+/**
+ * Clase que representa una Biblioteca para administrar socios, libros y préstamos.
+ * 
+ * @author Rodriguez Martemucci Lucciana, Balenzuela Tobias, 
+ * @version 1
+ */
+
 public class Biblioteca {
     private String nombre;
     private ArrayList<Socio> socios;
     private ArrayList<Libro> libros;
 
+    /**
+     * Constructor para inicializar la Biblioteca únicamente con su nombre.
+     * Crea las colecciones de socios y libros vacías.
+     * 
+     * @param p_nombre El nombre de la biblioteca.
+     */
     public Biblioteca(String p_nombre) {
         this.setNombre(p_nombre);
         this.setSocios(new ArrayList<Socio>());
         this.setLibros(new ArrayList<Libro>());
     }
 
+    /**
+     * Constructor sobrecargado para inicializar la Biblioteca con un nombre 
+     * y colecciones preexistentes de socios y libros.
+     * 
+     * @param p_nombre El nombre de la biblioteca.
+     * @param p_socios Lista de socios inicial de la biblioteca.
+     * @param p_libros Lista de libros inicial de la biblioteca.
+     */
     public Biblioteca(String p_nombre, ArrayList<Socio> p_socios, ArrayList<Libro> p_libros) {
         this.setNombre(p_nombre);
         this.setSocios(p_socios);
@@ -44,6 +65,12 @@ public class Biblioteca {
         return this.libros;
     }
 
+    /**
+     * Busca un socio registrado en la biblioteca a través de su número de DNI.
+     * 
+     * @param p_dni El DNI del socio a buscar.
+     * @return El objeto Socio encontrado, o null si no se encuentra registrado.
+     */
     public Socio buscarSocio(int p_dni) {
         for (Socio socio : this.getSocios()) {
             if (socio.getDniSocio() == p_dni) {
@@ -53,6 +80,12 @@ public class Biblioteca {
         return null;
     }
 
+    /**
+     * Genera un reporte con la lista de títulos únicos con los que cuenta la Biblioteca, 
+     * evitando mostrar títulos repetidos en caso de existir más de un ejemplar.
+     * 
+     * @return String con la lista detallada de títulos sin repetir.
+     */
     public String listaDeTitulos() {
         HashSet<String> titulosUnicos = new HashSet<String>();
         for (Libro libro : this.getLibros()) {
@@ -66,6 +99,13 @@ public class Biblioteca {
         return lista;
     }
 
+
+    /**
+     * Genera un listado de todos los libros registrados indicando su título 
+     * y si se encuentran prestados actualmente.
+     * 
+     * @return String con el listado de libros de acuerdo al formato especificado.
+     */
     public String listaDeLibros() {
         String lista = "Lista de Libros:\n";
         int i = 1;
@@ -77,6 +117,13 @@ public class Biblioteca {
         return lista;
     }
 
+
+    /**
+     * Genera un listado de aquellos docentes que nunca han adeudado 
+     * ni adeudan libros en la biblioteca.
+     * 
+     * @return String con los docentes responsables de acuerdo al formato especificado.
+     */
     public String listaDeDocentesResponsables() {
         String lista = "Lista de Docentes Responsables:\n";
         for (Socio socio : this.getSocios()) {
@@ -90,6 +137,7 @@ public class Biblioteca {
         return lista;
     }
 
+    
 public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro){
         for(Libro l : libros){
             if(l == p_libro){
