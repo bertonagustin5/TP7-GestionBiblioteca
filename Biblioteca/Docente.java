@@ -7,6 +7,8 @@ import java.util.GregorianCalendar;
  * Hereda el comportamiento general de {@link Socio} y agrega el área
  * en la que se desempeña, además de poder consultar si es responsable
  * con sus devoluciones y modificar sus días de préstamo.
+ * @author: Gonzalez Avril Araceli 
+ * @version 1.0
  */
 public class Docente extends Socio{
      /** Área en la que se desempeña el docente. */
