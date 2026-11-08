@@ -46,9 +46,10 @@ public class GestionBiblioteca {
 
                 case 3:
                     System.out.println("\n--- LISTADOS GENERALES ---");
-                    // --- TAREA INTEGRANTE 3 ---
-                    // Imprimir las respuestas a: "¿Cuál es la lista de libros? ¿Y la de socios?"
-                    // Llamar a biblioteca.listaDeLibros() y biblioteca.listaDeSocios().
+                    //metodo para listar libros
+                    System.out.println(biblbioteca.listaDeLibros());
+                    metodo para listar socios
+                    System.out.println(biblioteca.listaDeSocios());
                     
                     break;
 
