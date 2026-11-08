@@ -5,6 +5,8 @@ package biblioteca;
  * Hereda el comportamiento general de {@link Socio} y agrega la carrera
  * que cursa, además de una restricción propia sobre la cantidad de
  * libros que puede tener prestados.
+ * @author: Gonzalez Avril Araceli 
+ * @version 1.0
  */
 
 public class Estudiante extends Socio{
