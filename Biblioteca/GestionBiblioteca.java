@@ -5,10 +5,27 @@ import java.util.Scanner;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * Clase principal ejecutable del sistema de gestión de la biblioteca.
+ * Implementa una interfaz de consola con menús interactivos para administrar
+ * libros, socios, registrar préstamos y devoluciones, y realizar consultas específicas.
+ * 
+ * @author Berton Agustin, Gonzalez Avril Araceli, Balenzuela Tobias, Acevedo Horacio, Fernandez Zalazar Jeremias, Rodriguez Martemucci Lucciana
+ * @version 1.0
+ */
+
 public class GestionBiblioteca {
 
+    /** Instancia estática principal de la biblioteca sobre la cual operará el sistema. */
     static Biblioteca biblioteca = new Biblioteca("Biblioteca Central");
-    
+
+    /**
+     * Método principal que inicia la ejecución del programa.
+     * Contiene el bucle del menú principal que permite acceder a las distintas
+     * funciones del sistema hasta que el usuario decida salir.
+     * 
+     * @param args Argumentos de la línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         int opcion = 0;
@@ -83,7 +100,10 @@ public class GestionBiblioteca {
         
         teclado.close();
     }
-    /****** Parte Integrante 1 Acevedo horacio andres *************************/
+    
+    /**
+     * Muestra y gestiona el sub-menú para el alta y baja de libros y socios.
+     */
      public static void mostrarSubMenu_1() {
       ArrayList<String> ops = new ArrayList<>();
         ops.add("Libros");
@@ -107,7 +127,10 @@ public class GestionBiblioteca {
     } while(opcion!=0);
   
     }
-    
+
+    /**
+     * Muestra y gestiona las operaciones de tratamiento sobre los libros (Alta/Baja).
+     */
     public static void tratarLibro(){
      ArrayList<String> ops = new ArrayList<>();
         ops.add("Alta");
@@ -133,41 +156,46 @@ public class GestionBiblioteca {
   
     }
         
-    
-        
+    /**
+     * Interactúa con el usuario para registrar un nuevo libro en la biblioteca.
+     * Valida que el título no exista previamente en el sistema.
+     */    
     public static void altaLibros(){
         
         Scanner teclado = new Scanner(System.in);
         
-    System.out.print("Titulo: ");
-    String titulo = teclado.nextLine();
-
-    // 1. Validar si ya esta en la coleccion
-    if(biblioteca.buscarLibro(titulo) != null){
-        System.out.println("Ya existe un libro con ese titulo.\n");
-        return;
-    }
-
-    // 2. Si no existe, pido el resto de los datos
-    System.out.print("Edicion: ");
-    int edicion = teclado.nextInt();
-    teclado.nextLine(); // limpia el enter
-
-    System.out.print("Editorial: ");
-    String editorial = teclado.nextLine();
-
-    System.out.print("Anio: ");
-    int anio = teclado.nextInt();
-    teclado.nextLine(); // limpia el enter
-
-    // 3. Instanciar el nuevo libro y agregarlo
-    //Libro newLibro = new Libro(titulo, edicion, editorial, anio);
-    biblioteca.nuevoLibro(titulo,edicion,editorial,anio);
-
-    System.out.println("Libro agregado.");
-}
+        System.out.print("Titulo: ");
+        String titulo = teclado.nextLine();
     
- /**************** dar baja a libros ***************************/
+        // 1. Validar si ya esta en la coleccion
+        if(biblioteca.buscarLibro(titulo) != null){
+            System.out.println("Ya existe un libro con ese titulo.\n");
+            return;
+        }
+
+        // 2. Si no existe, pido el resto de los datos
+        System.out.print("Edicion: ");
+        int edicion = teclado.nextInt();
+        teclado.nextLine(); // limpia el enter
+    
+        System.out.print("Editorial: ");
+        String editorial = teclado.nextLine();
+    
+        System.out.print("Anio: ");
+        int anio = teclado.nextInt();
+        teclado.nextLine(); // limpia el enter
+    
+        // 3. Instanciar el nuevo libro y agregarlo
+        //Libro newLibro = new Libro(titulo, edicion, editorial, anio);
+        biblioteca.nuevoLibro(titulo,edicion,editorial,anio);
+    
+        System.out.println("Libro agregado.");
+    }
+    
+ /**
+     * Interactúa con el usuario para dar de baja (eliminar) un libro de la biblioteca
+     * mediante la búsqueda de su título.
+     */
  public static void darDeBajaLibro(){
     Scanner teclado = new Scanner(System.in);
 
@@ -186,7 +214,9 @@ public class GestionBiblioteca {
     System.out.println("Libro dado de baja.");
 }
     
- /*************** tratar socios ******************************/   
+ /**
+     * Muestra y gestiona las operaciones de tratamiento sobre los socios (Alta/Baja).
+     */
     public static void tratarSocio(){
       ArrayList<String> ops = new ArrayList<>();
         ops.add("Alta");
@@ -210,7 +240,11 @@ public class GestionBiblioteca {
     } while(opcion!=0);
   
  }
- /************** alta socio ******************************/
+    
+ /**
+     * Interactúa con el usuario para registrar un nuevo socio (Estudiante o Docente).
+     * Valida que el DNI no se encuentre ya registrado.
+     */
  public static void altaSocio(){
      
     Scanner teclado = new Scanner(System.in);
@@ -257,7 +291,11 @@ public class GestionBiblioteca {
     //biblioteca.agregarSocio(nuevoSocio);
     System.out.println("Socio agregado.");
 }
-/*************** baja de socios *************************************/
+    
+/**
+     * Interactúa con el usuario para dar de baja un socio mediante su DNI.
+     * Valida que el socio no posea libros prestados actualmente.
+     */
 public static void darDeBajaSocio(){
     Scanner teclado = new Scanner(System.in);
 
@@ -282,7 +320,10 @@ public static void darDeBajaSocio(){
     biblioteca.getSocios().remove(socio);
     System.out.println("Socio dado de baja.");
 } 
-/************** datos de pruebas ************************************************/
+/**
+     * Instancia y agrega a la biblioteca un conjunto de libros y socios 
+     * por defecto para facilitar las pruebas del sistema.
+     */
 public static void cargarDatosPrueba(){
     // --- Libros ---
     Libro libro1 = new Libro("Programacion en Java",1, "Deitel",2015);
@@ -308,6 +349,12 @@ public static void cargarDatosPrueba(){
     biblioteca.nuevoSocioDocente(docente2.getDniSocio(),docente2.getNombre(),docente2.getArea());
 }   
 
+    /**
+     * Despliega un sub-menú para simular transacciones de la biblioteca 
+     * (registrar préstamos y devoluciones).
+     * 
+     * @param teclado Objeto Scanner para la lectura de datos por consola.
+     */
 public static void simularMovimientos(Scanner teclado) {
         int opcionMov = -1;
         do {
@@ -342,6 +389,13 @@ public static void simularMovimientos(Scanner teclado) {
         } while (opcionMov != 0);
     }
 
+    /**
+     * Interfaz de usuario para registrar un préstamo.
+     * Pide DNI y título, busca las instancias correspondientes en la biblioteca 
+     * y genera la solicitud de préstamo si se cumplen las reglas de negocio.
+     * 
+     * @param teclado Objeto Scanner para la lectura de datos por consola.
+     */
     public static void registrarPrestamoUI(Scanner teclado) {
         System.out.print("Ingrese el DNI del socio: ");
         int dni = teclado.nextInt();
@@ -374,6 +428,12 @@ public static void simularMovimientos(Scanner teclado) {
         }
     }
 
+    /**
+     * Interfaz de usuario para registrar la devolución de un libro.
+     * Atrapa excepciones en caso de que el libro no figure como prestado en el sistema.
+     * 
+     * @param teclado Objeto Scanner para la lectura de datos por consola.
+     */
     public static void registrarDevolucionUI(Scanner teclado) {
         System.out.print("Ingrese el título del libro a devolver: ");
         String titulo = teclado.nextLine();
