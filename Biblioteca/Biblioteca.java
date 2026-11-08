@@ -95,10 +95,14 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
             if(l == p_libro){
                 for(Socio s : socios){
                     if(s == p_socio){
-                        Prestamo prestamo = new Prestamo(p_fechaRetiro, p_socio, p_libro);
-                        s.agregarPrestamo(prestamo);
-                        l.agregarPrestamo(prestamo);
-                        return true;
+                        if(s.puedePedir() && !l.prestado()){
+                            Prestamo prestamo = new Prestamo(p_fechaRetiro, p_socio, p_libro);
+                            s.agregarPrestamo(prestamo);
+                            l.agregarPrestamo(prestamo);
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 }
             }
@@ -119,7 +123,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         ArrayList<Prestamo> prestamosVencidos = new ArrayList<Prestamo>();
         for(Socio s : socios){
             for(Prestamo p : s.getPrestamos()){
-                if(p.vencido(fechaHoy)){
+                if(p.getFechaDevolucion() == null & p.vencido(fechaHoy)){
                     prestamosVencidos.add(p);
                 }
             }
@@ -140,7 +144,7 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
     public String quienTieneElLibro(Libro p_libro) throws LibroNoPrestadoException{
         for(Socio s : socios){
             for(Prestamo p : s.getPrestamos()){
-                if(p.getLibro() == p_libro){
+                if(p.getLibro() == p_libro && p.getFechaDevolucion() == null){
                     return s.getNombre();
                 }
             }
