@@ -1,5 +1,5 @@
 package biblioteca;
-**
+/**
  * Write a description of class Menu here.
  * 
  * @author Acevedo Horacio Andres 
