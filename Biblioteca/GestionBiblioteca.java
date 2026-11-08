@@ -48,7 +48,7 @@ public class GestionBiblioteca {
                     System.out.println("\n--- LISTADOS GENERALES ---");
                     //metodo para listar libros
                     System.out.println(biblbioteca.listaDeLibros());
-                    metodo para listar socios
+                    //metodo para listar socios
                     System.out.println(biblioteca.listaDeSocios());
                     
                     break;
