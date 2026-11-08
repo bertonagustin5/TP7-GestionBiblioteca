@@ -64,19 +64,17 @@ public class GestionBiblioteca {
 
                 case 5:
                     System.out.println("\n--- CONSULTA DE LIBRO ESPECÍFICO ---");
-                    // --- TAREA INTEGRANTE 5 ---
-                    // Responder a: "¿Qué socio tiene prestado el libro 'Programando con JAVA'?"
-                    // Implementar aquí el bloque try-catch llamando a quienTieneElLibro().
-                    /* Ejemplo de estructura:
-                    try {
-                        // buscar el objeto libro "Programando con JAVA"
-                        // String nombre = biblioteca.quienTieneElLibro(libroBuscado);
-                        // imprimir nombre
-                    } catch (LibroNoPrestadoException e) {
+                     try {
+                        Libro libroBuscado = biblioteca.buscarLibro("Programando con JAVA");
+                    if(libroBuscado == null){
+                        System.out.println("El libro 'Programando con Java' no esta cargado en la biblioteca.");
+                    } else {
+                        String nombre = biblioteca.quienTieneElLibro(libroBuscado);
+                        System.out.println("El libro 'Programando con Java' lo tiene prestado: " + nombre);
+                    }
+                    } catch (LibroNoPrestadoException e){
                         System.out.println(e.getMessage());
                     }
-                    */
-                    
                     break;
 
                 case 6:
