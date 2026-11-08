@@ -6,11 +6,11 @@ import java.util.GregorianCalendar;
 
 public class GestionBiblioteca {
 
+    static Biblioteca biblioteca = new Biblioteca("Biblioteca Central");
+    
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         int opcion = 0;
-        
-        Biblioteca biblioteca = new Biblioteca("Biblioteca Central");
         
         do {
             System.out.println("\n=== MENÚ DE GESTIÓN DE BIBLIOTECA ===");
