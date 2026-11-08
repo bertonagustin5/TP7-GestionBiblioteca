@@ -29,6 +29,7 @@ public class GestionBiblioteca {
                 case 1:
                     System.out.println("\n--- CARGANDO DATOS INICIALES ---");
                     // --- TAREA INTEGRANTE 1 ---
+                     mostrarSubMenu_1();
                     // Usar metodos nuevoLibro(), nuevoSocioEstudiante() y nuevoSocioDocente().
                     // Asegurarse de cargar el libro "Programando con JAVA".
                     
