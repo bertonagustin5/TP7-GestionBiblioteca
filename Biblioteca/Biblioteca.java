@@ -8,7 +8,7 @@ import java.util.HashSet;
 /**
  * Clase que representa una Biblioteca para administrar socios, libros y préstamos.
  * 
- * @author Rodriguez Martemucci Lucciana, Balenzuela Tobias, 
+ * @author Rodriguez Martemucci Lucciana, Balenzuela Tobias, Fernández Zalazar Jeremías 
  * @version 1
  */
 
@@ -139,7 +139,12 @@ public class Biblioteca {
         return lista;
     }
 
-    
+  /**
+  * Permite prestar un libro a un socio, solamente si el socio y el libro 
+  * están en las listas correspondientes, y si el socio puede pedir prestado
+  * @param Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
+  * @return un valor booleano
+  */
 public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro){
         for(Libro l : libros){
             if(l == p_libro){
@@ -159,7 +164,13 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         }
         return false;
     }
-    
+
+    /** 
+    * Permite devolver un libro que recibe por parámetro, dispara una excepción
+    * si el libro no estaba prestado
+    * @param Libro p_libro
+    * @return no retorna valor
+    **/
     public void devolverLibro(Libro p_libro) throws LibroNoPrestadoException{
         Calendar fechaHoy = new GregorianCalendar();
         if(!(p_libro.prestado())){
@@ -167,7 +178,11 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         }
         p_libro.ultimoPrestamo().registrarFechaDevolucion(fechaHoy);
     }
-    
+
+    /** devuelve una listada dinamica conformada por los préstamos vencidos
+    * @param no recibe parámetros 
+    * @return una lista dinámica del tipo Prestamo
+    **/
     public ArrayList<Prestamo> prestamosVencidos(){
         Calendar fechaHoy = new GregorianCalendar();
         ArrayList<Prestamo> prestamosVencidos = new ArrayList<Prestamo>();
@@ -180,7 +195,11 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         }
         return prestamosVencidos;
     }
-    
+
+    /** devuelve una listada dinamica conformada por los docentes responsables
+    * @param no recibe parámetros 
+    * @return una lista dinámica del tipo Socio
+    **/
     public ArrayList<Socio> docentesResponsables(){
         ArrayList<Socio> docentesResponsables = new ArrayList<Socio>();
         for(Socio d : socios){
@@ -190,7 +209,11 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
         }
         return docentesResponsables; 
     }
-    
+
+    /** Devuelve el nombre del socio que posee el libro que se recibe como parámetro
+    * @param Libro p_libro
+    * @return retorna un String, el nombre del socio
+    **/
     public String quienTieneElLibro(Libro p_libro) throws LibroNoPrestadoException{
         if (!p_libro.prestado()) {
             throw new LibroNoPrestadoException("El libro se encuentra en la biblioteca");
