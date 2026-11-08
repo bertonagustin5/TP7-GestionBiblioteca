@@ -153,7 +153,15 @@ public boolean prestarLibro(Calendar p_fechaRetiro, Socio p_socio, Libro p_libro
     Libro nuevoLibro = new Libro(p_titulo, p_edicion, p_editorial, p_anio);
     this.getLibros().add(nuevoLibro);
 }
-
+/**************** buscar libro ************************************/
+public Libro buscarLibro(String p_titulo) {
+        for (Libro libro : this.getLibros()) {
+            if (libro.getTitulo().equalsIgnoreCase(p_titulo)) {  
+                return libro;
+            }
+        }
+        return null;
+    }
 /***************** nuevoSocioEstudiante() *************************************************/
 public void nuevoSocioEstudiante(int p_dniSocio, String p_nombre, String p_carrera) {
     Estudiante nuevoEstudiante = new Estudiante(p_dniSocio, p_nombre, 5, p_carrera);
