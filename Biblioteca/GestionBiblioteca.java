@@ -27,6 +27,8 @@ public class GestionBiblioteca {
      * @param args Argumentos de la línea de comandos (no utilizados).
      */
     public static void main(String[] args) {
+        
+        cargarDatosPrueba();
         Scanner teclado = new Scanner(System.in);
         int opcion = 0;
         
